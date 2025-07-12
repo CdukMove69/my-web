@@ -1,0 +1,456 @@
+<!-- info.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bùi Vũ Đức Anh - Giới thiệu bản thân</title>
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f680.png">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-light: #a5b4fc;
+            --primary-dark: #4f46e5;
+            --accent: #f472b6;
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --text-dark: #f5f6fa;
+            --text-light: #1e293b;
+            --card-bg: rgba(15, 23, 42, 0.96);
+            --card-bg-light: rgba(248, 250, 252, 0.97);
+            --glass: blur(18px) saturate(120%);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --easing: cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow: 0 12px 40px rgba(99,102,241,0.10), 0 1.5px 8px rgba(0,0,0,0.10);
+        }
+        [data-theme="light"] {
+            --bg-dark: #f8fafc;
+            --bg-light: #0f172a;
+            --text-dark: #1e293b;
+            --text-light: #f5f6fa;
+            --card-bg: var(--card-bg-light);
+        }
+        html {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+        body {
+            margin: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #181e36 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            transition: background 0.5s var(--easing), color 0.3s ease;
+        }
+        #particles-js {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+        .click-ripple {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .click-ripple::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(244, 114, 182, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            opacity: 0;
+        }
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        .loading {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        .loading-spinner {
+            width: 56px;
+            height: 56px;
+            border: 4px solid rgba(99, 102, 241, 0.25);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+            margin: 72px auto 0;
+            background: var(--card-bg);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            padding: 56px 44px 44px;
+            text-align: center;
+            backdrop-filter: var(--glass);
+            border: 1.5px solid rgba(255,255,255,0.10);
+            animation: fadeInUp 0.8s var(--easing) forwards 0.2s;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: transform 0.4s var(--easing);
+            will-change: transform;
+        }
+        .container:hover {
+            transform: translateY(-4px);
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            font-size: 2.7rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 1.2px;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 8s ease infinite;
+            background-size: 200% 200%;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .subtitle {
+            font-size: 1.18rem;
+            color: #c7d2fe;
+            margin-bottom: 28px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+        .skills {
+            margin-bottom: 30px;
+        }
+        .skill-tag {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary) 70%, var(--accent) 100%);
+            color: #fff;
+            font-size: 0.98rem;
+            font-weight: 600;
+            border-radius: 18px;
+            padding: 7px 18px;
+            margin: 0 7px 10px 0;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.10);
+            letter-spacing: 0.5px;
+            transition: background 0.3s, transform 0.2s;
+            cursor: pointer;
+            user-select: none;
+        }
+        .skill-tag:hover {
+            background: linear-gradient(90deg, var(--accent) 60%, var(--primary-light) 100%);
+            transform: translateY(-2px) scale(1.05);
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .profile-img {
+            width: 148px;
+            height: 148px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 6px 32px rgba(99,102,241,0.22);
+            background: #fff;
+            transition: var(--transition);
+            filter: grayscale(18%) brightness(1.05);
+        }
+        .profile-img:hover {
+            transform: scale(1.07) rotate(-2deg);
+            filter: grayscale(0%) brightness(1.12);
+            box-shadow: 0 10px 44px rgba(99,102,241,0.32);
+        }
+        .profile-info {
+            flex: 1;
+            min-width: 220px;
+            text-align: left;
+        }
+        .profile-info p {
+            margin: 0 0 13px 0;
+            line-height: 1.7;
+            color: #e0e7ff;
+            font-size: 1.07rem;
+        }
+        .social-links {
+            margin-top: 14px;
+        }
+        .social-link {
+            display: inline-block;
+            margin-right: 18px;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.09rem;
+            border-radius: 20px;
+            padding: 7px 16px;
+            background: rgba(99,102,241,0.08);
+            transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+        .social-link:last-child { margin-right: 0; }
+        .social-link i { margin-right: 7px; }
+        .social-link:hover {
+            color: #fff;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            box-shadow: 0 2px 12px rgba(99,102,241,0.18);
+            text-decoration: none;
+        }
+        .back-home {
+            position: fixed;
+            top: 28px;
+            left: 28px;
+            z-index: 10;
+            background: linear-gradient(90deg, var(--primary) 60%, var(--primary-light) 100%);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-size: 1.08rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(99,102,241,0.18);
+            transition: all 0.3s var(--easing);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .back-home:hover {
+            background: linear-gradient(90deg, #4f46e5 60%, #6366f1 100%);
+            box-shadow: 0 4px 18px rgba(99,102,241,0.22);
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 28px;
+            right: 28px;
+            z-index: 10;
+            background: linear-gradient(135deg, var(--primary-light) 60%, var(--primary-dark) 100%);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 1.35rem;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(99,102,241,0.13);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s var(--easing);
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        .theme-toggle:hover {
+            background: linear-gradient(135deg, var(--accent) 60%, var(--primary) 100%);
+            box-shadow: 0 4px 16px rgba(244,114,182,0.18);
+        }
+        .footer {
+            margin-top: 38px;
+            color: #a5b4fc;
+            font-size: 1.07rem;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            text-align: center;
+            opacity: 0.92;
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 28px 8px 18px 8px;
+                margin-top: 32px;
+            }
+            .profile {
+                flex-direction: column;
+                gap: 18px;
+            }
+            .back-home, .theme-toggle {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                padding: 8px 16px;
+                font-size: 1rem;
+                width: 42px;
+                height: 42px;
+            }
+            .back-home { left: 10px; }
+            .theme-toggle { right: 10px; }
+            .profile-img {
+                width: 110px;
+                height: 110px;
+            }
+        }
+        @media (max-width: 400px) {
+            .container { padding: 10px 2vw 10px 2vw; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+    <div id="particles-js">
+      <div class="click-ripple"></div>
+    </div>
+    <button class="back-home" onclick="location.href='index.html'" aria-label="Quay về Trang Chủ">
+        <i class="fas fa-home"></i> <span class="hide-on-mobile">Trang Chủ</span>
+    </button>
+    <button class="theme-toggle" aria-label="Chuyển đổi chế độ sáng/tối">
+        <i class="fas fa-moon"></i>
+    </button>
+    <main class="container" aria-label="Giới thiệu bản thân">
+        <h1>Bùi Vũ Đức Anh</h1>
+        <div class="subtitle">Học sinh THPT Tây Thạnh • Đam mê công nghệ & chia sẻ kiến thức</div>
+        <div class="skills" aria-label="Kỹ năng">
+            <span class="skill-tag">Frontend</span>
+            <span class="skill-tag">UI/UX</span>
+            <span class="skill-tag">Photography</span>
+            <span class="skill-tag">Shooting</span>
+        </div>
+        <section class="profile">
+            <img class="profile-img" src="https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/502376330_703422395968139_3468364862478759652_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=gPS9m1Tqs5AQ7kNvwEpA3s0&_nc_oc=AdlqmQmoOhxji4dyUhGSp8UcIgMQoM95MMdrpCKRNPeaSHeS-zYpOKA1DjGcsRv6K00&_nc_zt=23&_nc_ht=scontent.fsgn5-9.fna&_nc_gid=CON_Sg47G_reAc4VGNKG8Q&oh=00_AfQQMGf21p4QayBb95-CA1mR3LaeoK5Cp-J-792DU60SCw&oe=6877FC90" alt="Avatar của Bùi Vũ Đức Anh" loading="lazy" />
+            <div class="profile-info">
+                <p>Xin chào! Tôi là <strong>Bùi Vũ Đức Anh</strong>, hiện đang là học sinh tại <strong>THPT Tây Thạnh</strong>. Tôi đam mê công nghệ, thiết kế giao diện và chia sẻ kiến thức với cộng đồng.</p>
+                <p>Tôi yêu thích các môn tự nhiên, bắn súng, và luôn tìm kiếm thử thách mới để phát triển bản thân.</p>
+                <nav class="social-links" aria-label="Liên kết mạng xã hội">
+                    <a href="https://www.facebook.com/Cduk.Move.Zit?locale=vi_VN" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="mailto:buivuducanh2009@gmail.com" class="social-link"><i class="fas fa-envelope"></i> Email</a>
+                </nav>
+            </div>
+        </section>
+        <footer class="footer">Cảm ơn bạn đã ghé thăm trang của tôi! <span aria-label="rocket" role="img">🚀</span></footer>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script>
+        // Loading screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loading').style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.loading').style.display = 'none';
+                }, 500);
+            }, 700);
+        });
+
+        // Theme toggle with localStorage
+        const themeToggle = document.querySelector('.theme-toggle');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        function setTheme(isDark) {
+            if (isDark) {
+                document.body.classList.remove('light-mode');
+                document.body.setAttribute('data-theme', 'dark');
+                themeToggle.querySelector('i').classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.add('light-mode');
+                document.body.setAttribute('data-theme', 'light');
+                themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        themeToggle.addEventListener('click', () => {
+            const isDark = !document.body.classList.contains('light-mode');
+            setTheme(!isDark);
+        });
+        // Initialize theme
+        const savedTheme = localStorage.getItem('theme') ||
+            (prefersDark.matches ? 'dark' : 'light');
+        setTheme(savedTheme === 'dark');
+        // Watch for system theme changes
+        prefersDark.addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) setTheme(e.matches);
+        });
+
+        // Click ripple effect
+        document.getElementById('particles-js').addEventListener('click', function(e) {
+            const ripple = document.createElement('div');
+            ripple.style.left = `${e.clientX - 30}px`;
+            ripple.style.top = `${e.clientY - 30}px`;
+            document.querySelector('.click-ripple').appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+
+        // Particles.js config with improved performance
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": ["#6366f1", "#a5b4fc", "#f472b6", "#4f46e5"] },
+                "shape": { "type": "circle" },
+                "opacity": {
+                    "value": 0.45,
+                    "random": true,
+                    "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false }
+                },
+                "size": {
+                    "value": 3.5,
+                    "random": true,
+                    "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 140,
+                    "color": "#6366f1",
+                    "opacity": 0.18,
+                    "width": 1.1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 0.8,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": { "enable": false }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } },
+                    "push": { "particles_nb": 5 }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
